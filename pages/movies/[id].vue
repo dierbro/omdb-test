@@ -5,20 +5,26 @@
       <div class="hint">Movie Details for ID: {{ imdbID }}</div>
     </div>
     <Loading v-if="pending" />
+
     <div v-if="data">
-      <div class="title-container">
-        <FavoriteIndicator :movie="data" />
-        <div>
-          <div class="title">
-            {{ data.Title }} -{{ data.Year }} - {{ data.Genre }}
-          </div>
-          <div class="directors">By {{ data.Director }}</div>
-          <div class="actors">With {{ data.Actors }}</div>
-        </div>
+      <div v-if="data.Error">
+        <p>{{ data.Error }}</p>
       </div>
-      <div class="plot-and-poster">
-        <img :src="posterUrl" alt="movie poster" />
-        <div class="plot">{{ data.Plot }}</div>
+      <div v-else>
+        <div class="title-container">
+          <FavoriteIndicator :movie="data" />
+          <div>
+            <div class="title">
+              {{ data.Title }} -{{ data.Year }} - {{ data.Genre }}
+            </div>
+            <div class="directors">By {{ data.Director }}</div>
+            <div class="actors">With {{ data.Actors }}</div>
+          </div>
+        </div>
+        <div class="plot-and-poster">
+          <img :src="posterUrl" alt="movie poster" />
+          <div class="plot">{{ data.Plot }}</div>
+        </div>
       </div>
     </div>
   </div>
