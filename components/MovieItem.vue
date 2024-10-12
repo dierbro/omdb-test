@@ -3,6 +3,7 @@
     <h2>{{ movie.Title }}</h2>
     <span>{{ movie.Year }}</span>
     <img :src="movie.Poster" alt="movie poster" />
+    <div @click="toggleFavorite">{{ isFavorite() ? '❤️' : '🤍' }}</div>
   </li>
 </template>
 
@@ -10,4 +11,13 @@
 const props = defineProps<{
   movie: Movie
 }>()
+
+const favoritesStore = useFavoritesStore()
+const toggleFavorite = () => {
+  favoritesStore.toggleFavorite(props.movie.imdbID)
+}
+
+const isFavorite = () => {
+  return favoritesStore.isFavorite(props.movie.imdbID)
+}
 </script>
