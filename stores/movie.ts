@@ -4,21 +4,10 @@ export const useMovieStore = defineStore('movie', {
   state: () => ({
     searchTerm: '',
     movies: [],
+    loading: false,
+    error: '',
   }),
   actions: {
-    async fetchMovie(id: string) {
-      const config = useRuntimeConfig()
-
-      try {
-        const response = await fetch(
-          `http://www.omdbapi.com/?i=${encodeURIComponent(id)}&apikey=${config.public.omdbApiKey}`,
-        )
-        const data = await response.json()
-        return data
-      } catch (error) {
-        console.error('Error fetching movie:', error)
-      }
-    },
     async fetchMovies(term: string) {
       const config = useRuntimeConfig()
 
@@ -27,7 +16,7 @@ export const useMovieStore = defineStore('movie', {
       if (process.client) {
         localStorage.setItem('searchTerm', term)
       }
-
+      this.loading = true
       try {
         const response = await fetch(
           `http://www.omdbapi.com/?s=${encodeURIComponent(term)}&apikey=${config.public.omdbApiKey}`,
@@ -39,8 +28,9 @@ export const useMovieStore = defineStore('movie', {
           this.movies = []
         }
       } catch (error) {
-        console.error('Error fetching movies:', error)
+        this.error = `Error fetching movies: ${error}`
       }
+      this.loading = false
     },
     loadSearchTermFromStorage() {
       if (process.client) {

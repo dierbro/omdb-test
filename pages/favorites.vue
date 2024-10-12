@@ -4,6 +4,9 @@
       v-if="favoritesStore.favorites.length"
       :movies="favoritesStore.favorites"
     />
+    <div v-else>
+      <p>No favorites yet.</p>
+    </div>
   </div>
 </template>
 

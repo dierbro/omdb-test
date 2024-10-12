@@ -1,9 +1,12 @@
 <template>
   <div>
-    <input v-model="term" placeholder="Search for movies..." />
-    <button @click="searchMovies">Search</button>
+    <SearchBar @search="searchMovies" />
+    <div v-if="store.loading">Loading...</div>
+    <div v-else-if="store.error">
+      <p>{{ store.error }}</p>
+    </div>
 
-    <div v-if="movies && movies.length">
+    <div v-else-if="movies && movies.length">
       <h2>Results for "{{ store.searchTerm }}":</h2>
       <MoviesList :movies="movies" />
     </div>
@@ -15,20 +18,17 @@
 
 <script setup lang="ts">
 const store = useMovieStore()
-const term = ref('')
 
 onMounted(() => {
   store.loadSearchTermFromStorage()
   if (store.searchTerm) {
-    term.value = store.searchTerm
     store.fetchMovies(store.searchTerm)
   }
 })
 
-const searchMovies = () => {
-  if (term.value.trim()) {
-    console.log('searching for:', term.value.trim())
-    store.fetchMovies(term.value.trim())
+const searchMovies = (searchTerm: string) => {
+  if (searchTerm) {
+    store.fetchMovies(searchTerm)
   }
 }
 
