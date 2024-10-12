@@ -1,5 +1,7 @@
 <template>
-  <div>
+  <NuxtLink to="/">Back to Search Results</NuxtLink>
+  <div v-if="pending">Loading...</div>
+  <div v-if="data">
     <h1>Movie Details for ID: {{ data.imdbID }}</h1>
     <FavoriteIndicator :movie="data" />
     <p>{{ data.Title }} -{{ data.Year }} - {{ data.Genre }}</p>
