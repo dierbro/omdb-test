@@ -7,14 +7,14 @@ import { computed } from 'vue'
 import { useFavoritesStore } from '@/stores/favorites' // Adjust the import path as needed
 
 const props = defineProps<{
-  imdbID: string
+  movie: Movie
 }>()
 
 const favoritesStore = useFavoritesStore()
 
-const isFavorite = computed(() => favoritesStore.isFavorite(props.imdbID))
+const isFavorite = computed(() => favoritesStore.isFavorite(props.movie.imdbID))
 
 const toggleFavorite = () => {
-  favoritesStore.toggleFavorite(props.imdbID)
+  favoritesStore.toggleFavorite(props.movie)
 }
 </script>

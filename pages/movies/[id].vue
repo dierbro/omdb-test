@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Movie Details for ID: {{ data.imdbID }}</h1>
-    <FavoriteIndicator :imdbID="data.imdbID" />
+    <FavoriteIndicator :movie="data" />
     <p>{{ data.Title }} -{{ data.Year }} - {{ data.Genre }}</p>
     <p>By {{ data.Director }}</p>
     <p>With {{ data.Actors }}</p>

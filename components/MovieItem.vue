@@ -6,7 +6,7 @@
       <img :src="movie.Poster" alt="movie poster" />
     </NuxtLink>
 
-    <FavoriteIndicator :imdbID="movie.imdbID" />
+    <FavoriteIndicator :movie="movie" />
   </li>
 </template>
 
