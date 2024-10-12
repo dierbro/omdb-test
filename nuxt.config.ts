@@ -6,4 +6,9 @@ export default defineNuxtConfig({
   typescript: {
     strict: true,
   },
+  runtimeConfig: {
+    public: {
+      omdbApiKey: process.env.OMDB_API_KEY,
+    },
+  },
 })
