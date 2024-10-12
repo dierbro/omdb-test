@@ -1,5 +1,7 @@
 <template>
-  <div @click="toggleFavorite">{{ isFavorite ? '❤️' : '🤍' }}</div>
+  <div class="toggle" @click="toggleFavorite">
+    {{ isFavorite ? '❤️' : '🤍' }}
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -18,3 +20,10 @@ const toggleFavorite = () => {
   favoritesStore.toggleFavorite(props.movie)
 }
 </script>
+
+<style scoped>
+.toggle {
+  cursor: pointer;
+  @apply text-3xl;
+}
+</style>

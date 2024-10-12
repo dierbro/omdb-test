@@ -10,7 +10,7 @@
 
 <style scoped>
 .container {
-  @apply min-h-screen flex flex-col;
+  @apply min-w-full min-h-screen flex flex-col;
 }
 
 .header,
