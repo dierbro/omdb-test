@@ -29,11 +29,11 @@ const posterUrl = computed(() => {
 }
 
 .movie-link {
-  @apply flex items-center;
+  @apply flex flex-col justify-center md:flex-row md:items-center;
 }
 
 .poster-image {
-  @apply object-contain w-32 h-32;
+  @apply object-contain md:w-32 md:h-32;
 }
 
 .movie-details {

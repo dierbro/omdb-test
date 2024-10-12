@@ -1,8 +1,8 @@
 <template>
-  <div class="search-container">
+  <form class="search-container" @submit.prevent="onSearchClick">
     <input v-model.trim="term" placeholder="Search for movies..." />
-    <button @click="onSearchClick">Search 🔎</button>
-  </div>
+    <button @click="onSearchClick"><span>Search</span> 🔎</button>
+  </form>
 </template>
 
 <script setup lang="ts">
@@ -28,5 +28,9 @@ const onSearchClick = () => {
 
 .search-container button {
   @apply font-bold border rounded p-2 bg-lime-400;
+}
+
+button span {
+  @apply hidden md:inline;
 }
 </style>
